@@ -22,9 +22,8 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>5.0.2.RELEASE</version>
+            <groupId>org.primefaces</groupId>
+            <artifactId>5.3</artifactId>
         </dependency>
     </dependencies>
 
