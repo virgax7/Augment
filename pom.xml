@@ -10,7 +10,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.target>1.9</maven.compiler.target>
+        <maven.compiler.target>1.9maven.compiler.target>
         <maven.compiler.source>1.9</maven.compiler.source>
     </properties>
 
@@ -23,7 +23,14 @@
         </dependency>
         <dependency>
             <groupId>org.primefaces</groupId>
-            <artifactId>5.3</artifactId>
+            <artifactId>primefaces</artifactId>
+            <version>5.3</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>javax.faces-api</artifactId>
+            <version>2.2</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
