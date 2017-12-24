@@ -43,10 +43,10 @@ public class Login implements Serializable {
         final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         if (loginDao.validate(username, password)) {
             session.setAttribute("username", username);
-            return "/home-page.xhtml?faces-redirect=true";
+            return "/service-pages/home-page.xhtml?faces-redirect=true";
         } else {
             session.setAttribute("invalidLoginMsg", "Invalid Credentials. Please try again.");
-            return "/login";
+            return "/account-pages/login";
         }
     }
 

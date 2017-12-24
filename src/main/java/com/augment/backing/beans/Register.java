@@ -52,11 +52,11 @@ public class Register implements Serializable {
         if (usernameIsValid(username) && passwordIsValid(password, passwordConfirm) && registerDao.usernameNotTaken(username)) {
             registerDao.signUp(username, password);
             session.setAttribute("username", username);
-            return "/successful-sign-up.xhtml?faces-redirect=true";
+            return "/account-pages/successful-sign-up.xhtml?faces-redirect=true";
         } else {
             session.setAttribute("invalidSignUpMsg", passwordIsValid(password, passwordConfirm) ? "Username " + username + " is taken or invalid."
                     : password.equals(passwordConfirm) ? "Password is invalid" : "Password does not match.");
-            return "/register.xhtml";
+            return "/account-pages/register.xhtml";
         }
     }
 

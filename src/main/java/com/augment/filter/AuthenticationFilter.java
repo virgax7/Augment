@@ -28,7 +28,7 @@ public class AuthenticationFilter implements Filter {
                     || requestURI.matches("/") || requestURI.contains("/index.xhtml") || requestURI.contains("javax.faces.resource")) {
                 chain.doFilter(request, response);
             } else {
-                httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.xhtml");
+                httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/account-pages/login.xhtml");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
