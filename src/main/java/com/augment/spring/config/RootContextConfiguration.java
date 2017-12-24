@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
 @ComponentScan(basePackages = "com.augment")
@@ -22,7 +23,7 @@ public class RootContextConfiguration {
     private String jdbcPassword;
 
     @Bean
-    public BasicDataSource getDataSource() {
+    public BasicDataSource basicDataSource() {
         final BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName(jdbcDriverClassName);
         ds.setUrl(jdbcUrl);
@@ -31,5 +32,10 @@ public class RootContextConfiguration {
         ds.setInitialSize(1);
         ds.setMaxTotal(2);
         return ds;
+    }
+
+    @Bean
+    public JdbcTemplate jdbcTemplate() {
+        return new JdbcTemplate(basicDataSource());
     }
 }

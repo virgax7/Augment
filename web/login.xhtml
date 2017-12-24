@@ -26,18 +26,19 @@
                     <tr>
                         <td>Username :</td>
                         <td>
-                            <h:inputText />
+                            <h:inputText value="#{login.username}" />
                         </td>
                     </tr>
                     <tr>
                         <td>Password :</td>
                         <td>
-                            <h:inputSecret />
+                            <h:inputSecret value="#{login.password}" />
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <h:commandButton value="Log in"/>
+                            <h:commandButton action="#{login.validateLogin}" value="Log in" />
+                            <p>#{invalidLoginMsg}</p>
                         </td>
                     </tr>
                 </table>

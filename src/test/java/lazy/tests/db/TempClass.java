@@ -1,6 +1,8 @@
 package lazy.tests.db;
 
+import com.augment.dao.LoginDao;
 import com.augment.spring.config.RootContextConfiguration;
+import org.apache.commons.logging.Log;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -15,8 +17,11 @@ public class TempClass {
         jt.execute("insert into employee (id, name) values (1, 'A')");
         jt.execute("insert into employee (id, name) values (2, 'B')");
 
-        System.out.println(jt.queryForList("select * from employee"));
+        System.out.println(jt.queryForList("select * from employee where id=? and name=?", new Object[] {1, "A"}));
 
         jt.execute("drop table employee");
+
+        LoginDao loginDao = ctx.getBean(LoginDao.class);
+        System.out.println(loginDao.validate("virgax7", "passwd"));
     }
 }
