@@ -2,7 +2,6 @@ package com.augment.backing.beans;
 
 import com.augment.dao.LoginDao;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -49,5 +48,11 @@ public class Login implements Serializable {
             session.setAttribute("invalidLoginMsg", "Invalid Credentials. Please try again.");
             return "/login";
         }
+    }
+
+    public String logOut() {
+        final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        session.invalidate();
+        return "/index.xhtml?faces-redirect=true";
     }
 }
