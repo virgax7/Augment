@@ -13,6 +13,9 @@
         #register-inner-panel {
             text-align: center;
         }
+        body {
+            text-align: center;
+        }
     </style>
 </h:head>
 <h:body>
@@ -34,7 +37,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Password Confirm :</td>
+                        <td>Retype Password:</td>
                         <td>
                             <h:inputSecret value="#{register.passwordConfirm}" />
                         </td>
@@ -49,5 +52,8 @@
             </h:form>
         </div>
     </div>
+    <i>Username needs to be 4 to 10 alpha-numeric with the exception of underscore</i>
+    <br />
+    <i>Password needs to be 6 to 20 alpha-numeric with the exception of underscore and have at least 1 uppercase,lowercase letter and 1 digit</i>
 </h:body>
 </html>

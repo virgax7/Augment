@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
+import java.util.regex.Pattern;
 
 @ManagedBean
 public class Register implements Serializable {
@@ -48,13 +49,22 @@ public class Register implements Serializable {
 
     public String signUp() {
         final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-        if (password.equals(passwordConfirm) && registerDao.usernameNotTaken(username)) {
+        if (usernameIsValid(username) && passwordIsValid(password, passwordConfirm) && registerDao.usernameNotTaken(username)) {
             registerDao.signUp(username, password);
             session.setAttribute("username", username);
             return "/successful-sign-up.xhtml?faces-redirect=true";
         } else {
-            session.setAttribute("invalidSignUpMsg", password.equals(passwordConfirm) ? "Username " + username + " is taken." : "Password does not match.");
+            session.setAttribute("invalidSignUpMsg", passwordIsValid(password, passwordConfirm) ? "Username " + username + " is taken or invalid."
+                    : password.equals(passwordConfirm) ? "Password is invalid" : "Password does not match.");
             return "/register.xhtml";
         }
+    }
+
+    private boolean usernameIsValid(final String username) {
+        return username.matches("\\A\\w{4,10}\\z");
+    }
+
+    private boolean passwordIsValid(final String password, final String passwordConfirm) {
+        return password.equals(passwordConfirm) && Pattern.compile("\\A(?=[^a-z]*[a-z])(?=(?:[^A-Z]*[A-Z]))(?=\\D*\\d)\\w{6,20}\\z").matcher(password).matches();
     }
 }
