@@ -13,9 +13,19 @@
         #login-inner-panel {
             text-align: center;
         }
+        #copyright-footer {
+            position:absolute;
+            width:100%;
+            height:15px;
+            bottom:0;
+            background-color:#f2f2f2;
+            text-align:center;
+            padding:12px 0;
+        }
     </style>
 </h:head>
 <h:body>
+    <h:outputStylesheet name="reset.css" library="css" />
     <div id="login-panel">
         <div id="login-inner-panel">
             <h1>Log in</h1>
@@ -43,5 +53,8 @@
             </h:form>
         </div>
     </div>
+    <footer id="copyright-footer">
+        <small>© 2018 Augment. All Rights Reserved.</small>
+    </footer>
 </h:body>
 </html>
