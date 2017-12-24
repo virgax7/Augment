@@ -1,42 +1,48 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 <h:head>
-    <title>Login</title>
+    <title>Register</title>
     <style>
-        #login-panel {
+        #register-panel {
             width: 300px;
             margin: 5% auto;
             border: 1px solid black;
             padding: 100px 150px;
             border-radius: 4px;
         }
-        #login-inner-panel {
+        #register-inner-panel {
             text-align: center;
         }
     </style>
 </h:head>
 <h:body>
-    <div id="login-panel">
-        <div id="login-inner-panel">
-            <h1>Log in</h1>
+    <div id="register-panel">
+        <div id="register-inner-panel">
+            <h1>Sign Up</h1>
             <h:form>
                 <table>
                     <tr>
                         <td>Username :</td>
                         <td>
-                            <h:inputText value="#{login.username}" />
+                            <h:inputText value="#{register.username}" />
                         </td>
                     </tr>
                     <tr>
                         <td>Password :</td>
                         <td>
-                            <h:inputSecret value="#{login.password}" />
+                            <h:inputSecret value="#{register.password}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Password Confirm :</td>
+                        <td>
+                            <h:inputSecret value="#{register.passwordConfirm}" />
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <h:commandButton action="#{login.validateLogin}" value="Log in" />
-                            <p>#{invalidLoginMsg}</p>
+                            <h:commandButton action="#{register.signUp}" value="Submit" />
+                            <p>#{invalidSignUpMsg}</p>
                         </td>
                     </tr>
                 </table>

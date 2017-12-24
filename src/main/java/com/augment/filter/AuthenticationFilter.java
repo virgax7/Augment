@@ -24,11 +24,11 @@ public class AuthenticationFilter implements Filter {
             final HttpSession session = httpServletRequest.getSession(false);
             final String requestURI = httpServletRequest.getRequestURI();
 
-            if (requestURI.contains("/login.xhtml") || session != null && session.getAttribute("username") != null
+            if (requestURI.contains("/login.xhtml") || requestURI.contains("/register.xhtml") || session != null && session.getAttribute("username") != null
                     || requestURI.matches("/") || requestURI.contains("/index.xhtml") || requestURI.contains("javax.faces.resource")) {
                 chain.doFilter(request, response);
             } else {
-                httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/faces/login.xhtml");
+                httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.xhtml");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
