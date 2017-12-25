@@ -1,19 +1,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-<h:head>
-    <title>Success!</title>
-    <style>
-        #success-panel {
-            margin: 0 auto;
-        }
-    </style>
-</h:head>
-<h:body>
-    <div id="success-panel">
-        <h2>Congradulations #{username} you have successfully signed up!</h2>
-        <h2>click the login button to return to login page</h2>
-        <p:button type="button" value="Login" icon="ui-icon-extlink" outcome="/account-pages/login.xhtml" />
-    </div>
-</h:body>
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/WEB-INF/templates/template.xhtml">
+    <ui:define name="header">
+        <h:head>
+            <title>Success</title>
+        </h:head>
+        <style>
+            #success-panel {
+                margin: 0 auto;
+            }
+        </style>
+    </ui:define>
+    <ui:define name="content">
+        <h:body>
+            <div id="success-panel">
+                <h2>Congradulations #{username} you have successfully signed up!</h2>
+                <h2>click the login button to return to login page</h2>
+                <p:button type="button" value="Login" icon="ui-icon-extlink" outcome="/account-pages/login.xhtml"/>
+            </div>
+        </h:body>
+    </ui:define>
+</ui:composition>
 </html>

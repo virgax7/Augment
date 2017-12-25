@@ -4,12 +4,12 @@
 <ui:composition template="/WEB-INF/templates/template.xhtml">
     <ui:define name="header">
         <h:head>
-            <title>Augment</title>
+            <title>#{username}</title>
         </h:head>
-        <ui:include src="/WEB-INF/includes/menu/landing-page-menu.xhtml"/>
+        <ui:include src="/WEB-INF/includes/menu/user-page-menu.xhtml"/>
     </ui:define>
     <ui:define name="content">
-        <h1>THIS IS THE INDEX PAGE</h1>
+        <h1>THIS IS HOME PAGE for user #{username}</h1>
     </ui:define>
 </ui:composition>
 </html>

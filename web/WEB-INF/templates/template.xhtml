@@ -1,39 +1,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-    <h:head>
-        <style>
-            #footer{
-                position:absolute;
-                width:100%;
-                height:15px;
-                bottom:0;
-                background-color:#f2f2f2;
-                text-align:center;
-                padding:12px 0;
-            }
-        </style>
-    </h:head>
-    <h:body>
-        <h:outputStylesheet name="reset.css" library="css" />
-        <div id="page">
-            <div id="header">
-                <ui:insert name="header">
-                    <ui:include src="/WEB-INF/includes/header.xhtml" />
-                </ui:insert>
-            </div>
+<h:outputStylesheet name="reset.css" library="css"/>
+<h:outputStylesheet name="template.css" library="css"/>
+<h:panelGroup layout="block">
+    <h:panelGroup layout="block" id="header">
+        <ui:insert name="header">
+            <ui:include src="/WEB-INF/includes/header.xhtml"/>
+        </ui:insert>
+    </h:panelGroup>
 
-            <div id="content">
-                <ui:insert name="content">
-                    <ui:include src="/WEB-INF/includes/content.xhtml" />
-                </ui:insert>
-            </div>
+    <h:panelGroup layout="block" id="content">
+        <ui:insert name="content">
+            <ui:include src="/WEB-INF/includes/content.xhtml"/>
+        </ui:insert>
+    </h:panelGroup>
 
-            <div id="footer">
-                <ui:insert name="footer">
-                    <ui:include src="/WEB-INF/includes/footer.xhtml" />
-                </ui:insert>
-            </div>
-        </div>
-    </h:body>
+    <h:panelGroup layout="block" id="footer">
+        <ui:insert name="footer">
+            <ui:include src="/WEB-INF/includes/footer.xhtml"/>
+        </ui:insert>
+    </h:panelGroup>
+</h:panelGroup>
 </html>
