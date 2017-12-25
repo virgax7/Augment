@@ -2,7 +2,6 @@ package lazy.tests.db;
 
 import com.augment.dao.LoginDao;
 import com.augment.spring.config.RootContextConfiguration;
-import org.apache.commons.logging.Log;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -22,6 +21,6 @@ public class JdbcTest {
         jt.execute("drop table employee");
 
         LoginDao loginDao = ctx.getBean(LoginDao.class);
-        System.out.println(loginDao.validate("virgax7", "passwd"));
+        System.out.println(loginDao.getUser("virgax7", "passwd"));
     }
 }

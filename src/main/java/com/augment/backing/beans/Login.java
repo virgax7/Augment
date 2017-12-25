@@ -41,7 +41,7 @@ public class Login implements Serializable {
 
     public String validateLogin() {
         final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-        if (loginDao.validate(username, password)) {
+        if (userExists(username, password)) {
             session.setAttribute("username", username);
             return "/service-pages/user-home-page.xhtml?faces-redirect=true";
         } else {
@@ -54,5 +54,9 @@ public class Login implements Serializable {
         final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         session.invalidate();
         return "/index.xhtml?faces-redirect=true";
+    }
+
+    private boolean userExists(final String username, final String password) {
+       return loginDao.getUser(username, password).size() == 1;
     }
 }

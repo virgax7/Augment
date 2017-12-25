@@ -49,8 +49,8 @@ public class Register implements Serializable {
 
     public String signUp() {
         final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-        if (usernameIsValid(username) && passwordIsValid(password, passwordConfirm) && registerDao.usernameNotTaken(username)) {
-            registerDao.signUp(username, password);
+        if (usernameIsValid(username) && passwordIsValid(password, passwordConfirm)) {
+            registerDao.createUser(username, password);
             session.setAttribute("username", username);
             return "/account-pages/successful-sign-up.xhtml?faces-redirect=true";
         } else {
@@ -61,7 +61,7 @@ public class Register implements Serializable {
     }
 
     private boolean usernameIsValid(final String username) {
-        return username.matches("\\A\\w{4,10}\\z");
+        return username.matches("\\A\\w{4,10}\\z") && registerDao.getUser(username).size() == 0;
     }
 
     private boolean passwordIsValid(final String password, final String passwordConfirm) {
