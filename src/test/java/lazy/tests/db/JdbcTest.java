@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class JdbcTest {
     public static void main(String[] args) throws Exception {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(RootContextConfiguration.class);
@@ -20,7 +22,8 @@ public class JdbcTest {
     private static void testloginDao(AnnotationConfigApplicationContext ctx) {
         System.out.println("now running testloginDao------------------------------------");
         LoginDao loginDao = ctx.getBean(LoginDao.class);
-        System.out.println(loginDao.getUser("virgax7", "passwd").size() == 1);
+        assertTrue(loginDao.getUser("virgax7", "passwd").size() == 1);
+        System.out.println("passed...");
     }
 
     public static void testDayTable(final JdbcTemplate jdbcTemplate) throws Exception {
@@ -36,8 +39,9 @@ public class JdbcTest {
             throw new Exception("inserting into day a username that doesn't exist in users should fail....");
         }
         jdbcTemplate.execute("insert into day values ('virga8')");
-        System.out.println(jdbcTemplate.queryForList("select * from day where username='virga8'").size() == 1);
+        assertTrue(jdbcTemplate.queryForList("select * from day where username='virga8'").size() == 1);
         jdbcTemplate.execute("delete from users where username='virga8'");
-        System.out.println(jdbcTemplate.queryForList("select * from day where username='virga8'").size() == 0);
+        assertTrue(jdbcTemplate.queryForList("select * from day where username='virga8'").size() == 0);
+        System.out.println("passed...");
     }
 }

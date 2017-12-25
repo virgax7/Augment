@@ -4,8 +4,6 @@ CREATE TABLE users(
   PRIMARY KEY (username)
 );
 
-INSERT INTO users (username, password) VALUES ('virgax7', 'passwd');
-
 CREATE TABLE day(
   username VARCHAR(20),
   twelve_one VARCHAR(255) NOT NULL DEFAULT '',
