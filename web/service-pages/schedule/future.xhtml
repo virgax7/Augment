@@ -11,7 +11,6 @@
     </ui:define>
     <ui:define name="content">
         <h:body>
-            <h:outputStylesheet name="schedule/today.css" library="css"/>
             <p:dataTable value="#{todaySchedule.hours}" var="hour">
                 <p:column headerText="Hour">
                     #{hour.time}
