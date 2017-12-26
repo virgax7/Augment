@@ -1,4 +1,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/WEB-INF/templates/template.xhtml">
+    <ui:define name="header">
+        <h:head>
+            <title>#{username}</title>
+            <style>
+                tr {
+                    text-align: center;
+                }
+            </style>
+        </h:head>
+        <ui:include src="/WEB-INF/includes/menu/user-page-menu.xhtml"/>
+    </ui:define>
+    <ui:define name="content">
+        <h:body>
+            <h:outputStylesheet name="schedule/today.css" library="css"/>
+            <p:dataTable value="#{todaySchedule.hours}" var="hour">
+                <p:column headerText="Hour">
+                    #{hour.time}
+                </p:column>
+                <p:column headerText="Task">
+                    #{hour.task}
+                </p:column>
+            </p:dataTable>
+            <p:button type="button" value="Edit Tasks" icon="ui-icon-extlink"
+                      outcome="/service-pages/schedule/edit-today.xhtml"/>
+        </h:body>
+    </ui:define>
+</ui:composition>
 </html>

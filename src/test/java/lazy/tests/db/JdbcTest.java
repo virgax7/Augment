@@ -15,33 +15,42 @@ public class JdbcTest {
         DataSource ds = ctx.getBean(DataSource.class);
         JdbcTemplate jdbcTemplate = new JdbcTemplate(ds);
 
-        testloginDao(ctx);
+        testloginDao(jdbcTemplate, ctx);
         testDayTable(jdbcTemplate);
     }
 
-    private static void testloginDao(AnnotationConfigApplicationContext ctx) {
+    private static void testloginDao(final JdbcTemplate jdbcTemplate, final AnnotationConfigApplicationContext ctx) {
         System.out.println("now running testloginDao------------------------------------");
         LoginDao loginDao = ctx.getBean(LoginDao.class);
-        assertTrue(loginDao.getUser("virgax7", "passwd").size() == 1);
-        System.out.println("passed...");
+        try {
+            jdbcTemplate.execute("insert into users values ('virga7', 'passwd')");
+            assertTrue(loginDao.getUser("virgax7", "passwd").size() == 1);
+            System.out.println("passed...");
+        } finally {
+            jdbcTemplate.execute("delete from users where username='virga7')");
+            assertTrue(loginDao.getUser("virgax7", "passwd").size() == 0);
+        }
     }
 
     public static void testDayTable(final JdbcTemplate jdbcTemplate) throws Exception {
         System.out.println("now running testDayTable------------------------------------");
-        jdbcTemplate.execute("insert into users values ('virga8', 'pass')");
-        boolean flag = false;
         try {
-            jdbcTemplate.execute("insert into day values ('nonexist')");
-            flag = true;
-        } catch (Exception e) {
+            jdbcTemplate.execute("insert into users values ('virga8', 'pass')");
+            boolean flag = false;
+            try {
+                jdbcTemplate.execute("insert into day values ('nonexist')");
+                flag = true;
+            } catch (Exception e) {
+            }
+            if (flag) {
+                throw new Exception("inserting into day a username that doesn't exist in users should fail....");
+            }
+            jdbcTemplate.execute("insert into day values ('virga8')");
+            assertTrue(jdbcTemplate.queryForList("select * from day where username='virga8'").size() == 1);
+        } finally {
+            jdbcTemplate.execute("delete from users where username='virga8'");
+            System.out.println("passed...");
+            assertTrue(jdbcTemplate.queryForList("select * from day where username='virga8'").size() == 0);
         }
-        if (flag) {
-            throw new Exception("inserting into day a username that doesn't exist in users should fail....");
-        }
-        jdbcTemplate.execute("insert into day values ('virga8')");
-        assertTrue(jdbcTemplate.queryForList("select * from day where username='virga8'").size() == 1);
-        jdbcTemplate.execute("delete from users where username='virga8'");
-        assertTrue(jdbcTemplate.queryForList("select * from day where username='virga8'").size() == 0);
-        System.out.println("passed...");
     }
 }

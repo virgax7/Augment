@@ -1,6 +1,7 @@
 package com.augment.backing.beans;
 
 import com.augment.dao.RegisterDao;
+import com.augment.dao.TodayScheduleDao;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -13,6 +14,8 @@ import java.util.regex.Pattern;
 public class Register implements Serializable {
     @ManagedProperty("#{registerDao}")
     private RegisterDao registerDao;
+    @ManagedProperty("#{todayScheduleDao}")
+    private TodayScheduleDao todayScheduleDao;
 
     private static final long serialVersionUID = 8413015591882487179L;
     private String username;
@@ -47,10 +50,15 @@ public class Register implements Serializable {
         this.registerDao = registerDao;
     }
 
+    public void setTodayScheduleDao(TodayScheduleDao todayScheduleDao) {
+        this.todayScheduleDao = todayScheduleDao;
+    }
+
     public String signUp() {
         final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
         if (usernameIsValid(username) && passwordIsValid(password, passwordConfirm)) {
             registerDao.createUser(username, password);
+            todayScheduleDao.createDay(username);
             session.setAttribute("username", username);
             return "/account-pages/successful-sign-up.xhtml?faces-redirect=true";
         } else {
