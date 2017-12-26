@@ -6,111 +6,49 @@
     <ui:define name="header">
         <h:head>
             <title>#{username}</title>
+            <style>
+                .formInput {
+                    width: 100%;
+                }
+                table {
+                    width: 100%;
+                }
+                tr td:nth-child(1) {
+                    width: 150px;
+                }
+            </style>
         </h:head>
         <ui:include src="/WEB-INF/includes/menu/user-page-menu.xhtml"/>
     </ui:define>
     <ui:define name="content">
         <h:body>
-            <h:outputStylesheet name="schedule/today.css" library="css"/>
-            <h:form id="schedule">
-                <p>
-                    <label for="fourFiveAM">4:00 - 5:00 AM </label>
-                    <h:inputText id="fourFiveAM" style="display:table-cell" value="#{todaySchedule.fourFiveAM}"/>
-                </p>
-                <p>
-                    <label for="fiveSixAM">5:00 - 6:00 AM </label>
-                    <h:inputText id="fiveSixAM" style="display:table-cell" value="#{todaySchedule.fiveSixAM}"/>
-                </p>
-                <p>
-                    <label for="sixSevenAM">6:00 - 7:00 AM </label>
-                    <h:inputText id="sixSevenAM" style="display:table-cell" value="#{todaySchedule.sixSevenAM}"/>
-                </p>
-                <p>
-                    <label for="sevenEightAM">7:00 - 8:00 AM </label>
-                    <h:inputText id="sevenEightAM" style="display:table-cell" value="#{todaySchedule.sevenEightAM}"/>
-                </p>
-                <p>
-                    <label for="eightNineAM">8:00 - 9:00 AM </label>
-                    <h:inputText id="eightNineAM" style="display:table-cell" value="#{todaySchedule.eightNineAM}"/>
-                </p>
-                <p>
-                    <label for="nineTenAM">9:00 - 10:00 AM </label>
-                    <h:inputText id="nineTenAM" style="display:table-cell" value="#{todaySchedule.nineTenAM}"/>
-                </p>
-                <p>
-                    <label for="tenElevenAM">10:00 - 11:00 AM </label>
-                    <h:inputText id="tenElevenAM" style="display:table-cell" value="#{todaySchedule.tenElevenAM}"/>
-                </p>
-                <p>
-                    <label for="elevenTwelveAM">11:00 - 12:00 PM </label>
-                    <h:inputText id="elevenTwelvePM" style="display:table-cell"
-                                 value="#{todaySchedule.elevenTwelvePM}"/>
-                </p>
-                <p>
-                    <label for="twelveOnePM">12:00 - 1:00 PM </label>
-                    <h:inputText id="twelveOnePM" style="display:table-cell" value="#{todaySchedule.twelveOnePM}"/>
-                </p>
-                <p>
-                    <label for="oneTwoPM">1:00 - 2:00 PM </label>
-                    <h:inputText id="oneTwoPM" style="display:table-cell" value="#{todaySchedule.oneTwoPM}"/>
-                </p>
-                <p>
-                    <label for="twoThreePM">2:00 - 3:00 PM </label>
-                    <h:inputText id="twoThreePM" style="display:table-cell" value="#{todaySchedule.twoThreePM}"/>
-                </p>
-                <p>
-                    <label for="threeFourPM">3:00 - 4:00 PM </label>
-                    <h:inputText id="threeFourPM" style="display:table-cell" value="#{todaySchedule.threeFourPM}"/>
-                </p>
-                <p>
-                    <label for="fourFivePM">4:00 - 5:00 PM </label>
-                    <h:inputText id="fourFivePM" style="display:table-cell" value="#{todaySchedule.fourFivePM}"/>
-                </p>
-                <p>
-                    <label for="fiveSixPM">5:00 - 6:00 PM </label>
-                    <h:inputText id="fiveSixPM" style="display:table-cell" value="#{todaySchedule.fiveSixPM}"/>
-                </p>
-                <p>
-                    <label for="sixSevenPM">6:00 - 7:00 PM </label>
-                    <h:inputText id="sixSevenPM" style="display:table-cell" value="#{todaySchedule.sixSevenPM}"/>
-                </p>
-                <p>
-                    <label for="sevenEightPM">7:00 - 8:00 PM </label>
-                    <h:inputText id="sevenEightPM" style="display:table-cell" value="#{todaySchedule.sevenEightPM}"/>
-                </p>
-                <p>
-                    <label for="eightNinePM">8:00 - 9:00 PM </label>
-                    <h:inputText id="eightNinePM" style="display:table-cell" value="#{todaySchedule.eightNinePM}"/>
-                </p>
-                <p>
-                    <label for="nineTenPM">9:00 - 10:00 PM </label>
-                    <h:inputText id="nineTenPM" style="display:table-cell" value="#{todaySchedule.nineTenPM}"/>
-                </p>
-                <p>
-                    <label for="tenElevenPM">10:00 - 11:00 PM </label>
-                    <h:inputText id="tenElevenPM" style="display:table-cell" value="#{todaySchedule.tenElevenPM}"/>
-                </p>
-                <p>
-                    <label for="elevenTwelveAM">11:00 - 12:00 AM </label>
-                    <h:inputText id="elevenTwelveAM" style="display:table-cell"
-                                 value="#{todaySchedule.elevenTwelveAM}"/>
-                </p>
-                <p>
-                    <label for="twelveOneAM">12:00 - 1:00 AM </label>
-                    <h:inputText id="twelveOneAM" style="display:table-cell" value="#{todaySchedule.twelveOneAM}"/>
-                </p>
-                <p>
-                    <label for="oneTwoAM">1:00 - 2:00 AM </label>
-                    <h:inputText id="oneTwoAM" style="display:table-cell" value="#{todaySchedule.oneTwoAM}"/>
-                </p>
-                <p>
-                    <label for="twoThreeAM">2:00 - 3:00 AM </label>
-                    <h:inputText id="twoThreeAM" style="display:table-cell" value="#{todaySchedule.twoThreeAM}"/>
-                </p>
-                <p>
-                    <label for="threeFourAM">3:00 - 4:00 AM </label>
-                    <h:inputText id="threeFourAM" style="display:table-cell" value="#{todaySchedule.threeFourAM}"/>
-                </p>
+            <h:form>
+                <p:panelGrid columns="2">
+                    4:00 - 5:00 AM: <p:inputText styleClass="formInput" value="#{todaySchedule.fourFiveAM}"/>
+                    5:00 - 6:00 AM: <p:inputText styleClass="formInput" value="#{todaySchedule.fiveSixAM}"/>
+                    6:00 - 7:00 AM: <p:inputText styleClass="formInput" value="#{todaySchedule.sixSevenAM}"/>
+                    7:00 - 8:00 AM: <p:inputText styleClass="formInput" value="#{todaySchedule.sevenEightAM}"/>
+                    8:00 - 9:00 AM: <p:inputText styleClass="formInput" value="#{todaySchedule.eightNineAM}"/>
+                    9:00 - 10:00 AM: <p:inputText styleClass="formInput" value="#{todaySchedule.nineTenAM}"/>
+                    10:00 - 11:00 AM: <p:inputText styleClass="formInput" value="#{todaySchedule.tenElevenAM}"/>
+                    11:00 - 12:00 PM: <p:inputText styleClass="formInput" value="#{todaySchedule.elevenTwelvePM}"/>
+                    12:00 - 1:00 PM: <p:inputText styleClass="formInput" value="#{todaySchedule.twelveOnePM}"/>
+                    1:00 - 2:00 PM: <p:inputText styleClass="formInput" value="#{todaySchedule.oneTwoPM}"/>
+                    2:00 - 3:00 PM: <p:inputText styleClass="formInput" value="#{todaySchedule.twoThreePM}"/>
+                    3:00 - 4:00 PM: <p:inputText styleClass="formInput" value="#{todaySchedule.threeFourPM}"/>
+                    4:00 - 5:00 PM: <p:inputText styleClass="formInput" value="#{todaySchedule.fourFivePM}"/>
+                    5:00 - 6:00 PM: <p:inputText styleClass="formInput" value="#{todaySchedule.fiveSixPM}"/>
+                    6:00 - 7:00 PM: <p:inputText styleClass="formInput" value="#{todaySchedule.sixSevenPM}"/>
+                    7:00 - 8:00 PM: <p:inputText styleClass="formInput" value="#{todaySchedule.sevenEightPM}"/>
+                    8:00 - 9:00 PM: <p:inputText styleClass="formInput" value="#{todaySchedule.eightNinePM}"/>
+                    9:00 - 10:00 PM: <p:inputText styleClass="formInput" value="#{todaySchedule.nineTenPM}"/>
+                    10:00 - 11:00 PM: <p:inputText styleClass="formInput" value="#{todaySchedule.tenElevenPM}"/>
+                    11:00 - 12:00 AM: <p:inputText styleClass="formInput" value="#{todaySchedule.elevenTwelveAM}"/>
+                    12:00 - 1:00 AM: <p:inputText styleClass="formInput" value="#{todaySchedule.twelveOneAM}"/>
+                    1:00 - 2:00 AM: <p:inputText styleClass="formInput" value="#{todaySchedule.oneTwoAM}"/>
+                    2:00 - 3:00 AM: <p:inputText styleClass="formInput" value="#{todaySchedule.twoThreeAM}"/>
+                    3:00 - 4:00 AM: <p:inputText styleClass="formInput" value="#{todaySchedule.threeFourAM}"/>
+                </p:panelGrid>
                 <p id="buttons">
                     <h:commandButton action="#{todaySchedule.saveSchedule}" value="Save"/>
                     <button id="resetButton" style="display:table-cell">Reset</button>

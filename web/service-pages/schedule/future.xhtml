@@ -6,20 +6,14 @@
     <ui:define name="header">
         <h:head>
             <title>#{username}</title>
-            <style>
-                .hourColumn {
-                    text-align: right;
-                    width: 150px;
-                }
-            </style>
         </h:head>
         <ui:include src="/WEB-INF/includes/menu/user-page-menu.xhtml"/>
     </ui:define>
     <ui:define name="content">
         <h:body>
             <h:outputStylesheet name="schedule/today.css" library="css"/>
-            <p:dataTable styleClass="scheduleTable" value="#{todaySchedule.hours}" var="hour">
-                <p:column headerText="Hour" styleClass="hourColumn" >
+            <p:dataTable value="#{todaySchedule.hours}" var="hour">
+                <p:column headerText="Hour">
                     #{hour.time}
                 </p:column>
                 <p:column headerText="Task">
