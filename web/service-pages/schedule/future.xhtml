@@ -6,21 +6,29 @@
     <ui:define name="header">
         <h:head>
             <title>#{username}</title>
+            <script type="text/javascript" src="/resources/js/schedule/future.js" defer="defer"></script>
         </h:head>
         <ui:include src="/WEB-INF/includes/menu/user-page-menu.xhtml"/>
     </ui:define>
     <ui:define name="content">
         <h:body>
-            <p:dataTable value="#{todaySchedule.hours}" var="hour">
-                <p:column headerText="Hour">
-                    #{hour.time}
-                </p:column>
-                <p:column headerText="Task">
-                    #{hour.task}
-                </p:column>
-            </p:dataTable>
-            <p:button type="button" value="Edit Tasks" icon="ui-icon-extlink"
-                      outcome="/service-pages/schedule/edit-today.xhtml"/>
+            <h:outputStylesheet name="/schedule/future.css" library="css"/>
+            <div id="wrapper">
+                <div id="mainTable">
+                    <div class="dropZone">
+                        <div class="dropZoneHeader">GOALS</div>
+                        <div id="cell1" class="cell">Task 1</div>
+                    </div>
+                    <div class="dropZone">
+                        <div class="dropZoneHeader">IN PROGRESS</div>
+                        <div id="cell2" class="cell">Task 2</div>
+                    </div>
+                    <div class="dropZone">
+                        <div class="dropZoneHeader">ACCOMPLISHED</div>
+                        <div id="cell3" class="cell">Task 3</div>
+                    </div>
+                </div>
+            </div>
         </h:body>
     </ui:define>
 </ui:composition>
