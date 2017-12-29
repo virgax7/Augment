@@ -15,17 +15,29 @@
             <h:outputStylesheet name="/schedule/future.css" library="css"/>
             <div id="wrapper">
                 <div id="mainTable">
-                    <div class="dropZone">
-                        <div class="dropZoneHeader">GOALS</div>
-                        <div id="cell1" class="cell">Task 1</div>
+                    <div class="dropZoneCell">
+                        <div class="dropZoneHeader">Goals</div>
+                        <div id="task1" class="taskWrapper">
+                            <button class="editButton"></button>
+                            <div class="dueDate">Due date: 02/01/2017</div>
+                            <div class="task">Learn javascript pretty well</div>
+                        </div>
                     </div>
-                    <div class="dropZone">
-                        <div class="dropZoneHeader">IN PROGRESS</div>
-                        <div id="cell2" class="cell">Task 2</div>
+                    <div class="dropZoneCell">
+                        <div class="dropZoneHeader">In Progress</div>
+                        <div id="task2" class="taskWrapper">
+                            <button class="editButton"></button>
+                            <div class="dueDate">Due date: 01/03/2017</div>
+                            <div class="task">Finish out this page at least functionality wise...</div>
+                        </div>
                     </div>
-                    <div class="dropZone">
-                        <div class="dropZoneHeader">ACCOMPLISHED</div>
-                        <div id="cell3" class="cell">Task 3</div>
+                    <div class="dropZoneCell">
+                        <div class="dropZoneHeader">Accomplished</div>
+                        <div id="task3" class="taskWrapper">
+                            <button class="editButton"></button>
+                            <div class="dueDate">Due date: 12/28/2017</div>
+                            <div class="task">Eat some delicious ice cream...</div>
+                        </div>
                     </div>
                 </div>
             </div>
