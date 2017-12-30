@@ -25,16 +25,8 @@ public class GoalsDao {
                 targetDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()});
     }
 
-    public List<Map<String, Object>> getGoalsNotInProgress(final String username) {
-        return jdbcTemplate.query("select * from goal where username='" + username + "' and status='" + Goal.STATUS.NOT_IN_PROGRESS + "' and archived=" + false, getRowMapper());
-    }
-
-    public List<Map<String, Object>> getGoalsInProgress(final String username) {
-        return jdbcTemplate.query("select * from goal where username='" + username + "' and status='" + Goal.STATUS.IN_PROGRESS + "' and archived=" + false, getRowMapper());
-    }
-
-    public List<Map<String, Object>> getGoalsAccomplished(final String username) {
-        return jdbcTemplate.query("select * from goal where username='" + username + "' and status='" + Goal.STATUS.ACCOMPLISHED + "' and archived=" + false, getRowMapper());
+    public List<Map<String, Object>> getGoal(final String username, final Goal.STATUS goalStatus) {
+        return jdbcTemplate.query("select * from goal where username='" + username + "' and status='" + goalStatus.toString() + "' and archived=" + false, getRowMapper());
     }
 
     public List<Map<String, Object>> getGoal(final String username, final String title) {

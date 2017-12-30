@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @ManagedBean
 public class Goals implements Serializable {
@@ -32,41 +33,29 @@ public class Goals implements Serializable {
     }
 
     public List<Goal> getGoalsNotInProgress() {
-        final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        if (session == null) {
-            return new ArrayList<>();
-        }
-        final List<Goal> goals = new ArrayList<>();
-        final List<Map<String, Object>> goalSet = goalsDao.getGoalsNotInProgress((String) session.getAttribute("username"));
-        goalSet.stream().forEach(map -> addGoal(map, goals));
-        return goals;
+        return getGoal(Goal.STATUS.NOT_IN_PROGRESS);
     }
 
     public List<Goal> getGoalsInProgress() {
-        final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        if (session == null) {
-            return new ArrayList<>();
-        }
-        final List<Goal> goals = new ArrayList<>();
-        final List<Map<String, Object>> goalSet = goalsDao.getGoalsInProgress((String) session.getAttribute("username"));
-        goalSet.stream().forEach(map -> addGoal(map, goals));
-        return goals;
+        return getGoal(Goal.STATUS.IN_PROGRESS);
     }
 
     public List<Goal> getGoalsAccomplished() {
+        return getGoal(Goal.STATUS.ACCOMPLISHED);
+    }
+
+    private List<Goal> getGoal(final Goal.STATUS goalStatus){
         final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         if (session == null) {
             return new ArrayList<>();
         }
-        final List<Goal> goals = new ArrayList<>();
-        final List<Map<String, Object>> goalSet = goalsDao.getGoalsAccomplished((String) session.getAttribute("username"));
-        goalSet.stream().forEach(map -> addGoal(map, goals));
-        return goals;
+        final List<Map<String, Object>> retrievedGoals = goalsDao.getGoal((String) session.getAttribute("username"), goalStatus);
+        return retrievedGoals.stream().map(goalMap -> makeGoal(goalMap)).collect(Collectors.toList());
     }
 
-    private void addGoal(final Map<String, Object> goal, final List<Goal> goals) {
-        goals.add(new Goal((String) goal.get("title"), (String) goal.get("description"),
-                formatToLocalDate(goal.get("start_date").toString()), formatToLocalDate(goal.get("target_date").toString())));
+    private Goal makeGoal(final Map<String, Object> goal) {
+        return new Goal((String) goal.get("title"), (String) goal.get("description"),
+                formatToLocalDate(goal.get("start_date").toString()), formatToLocalDate(goal.get("target_date").toString()));
     }
 
     private String formatToLocalDate(final String dateString) {
