@@ -13,7 +13,7 @@ import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class JdbcTest {
+class JdbcTest {
     private static final String USER = "mango";
     private static final String PASSWD = "apple";
     private static final String USER_QUOTED = "'mango'";
@@ -65,7 +65,7 @@ public class JdbcTest {
         System.out.println("passed...");
     }
 
-    public static void testDayTable(final JdbcTemplate jdbcTemplate) throws Exception {
+    private static void testDayTable(final JdbcTemplate jdbcTemplate) throws Exception {
         System.out.println("now running testDayTable------------------------------------");
         try {
             jdbcTemplate.execute("insert into users values ('virga8', 'pass')");

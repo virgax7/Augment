@@ -22,7 +22,7 @@ function showEditCell() {
     var editCell =
         '<div id="editCell">' +
             '<button id="closeEditCellButton"></button>' +
-        '</div>'
+        '</div>';
     document.getElementById("mainTable").insertAdjacentHTML('beforeend', editCell);
     document.getElementById("closeEditCellButton").addEventListener("click", closeEditCell);
 }

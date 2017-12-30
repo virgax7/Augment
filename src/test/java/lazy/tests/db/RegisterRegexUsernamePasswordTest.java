@@ -8,10 +8,10 @@ import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class RegisterRegexUsernamePasswordTest {
+class RegisterRegexUsernamePasswordTest {
 
     @Test
-    public void mainTest() {
+    void mainTest() {
         final List<String> failurePasswords = new ArrayList<>();
         boolean underSixPassword = Pattern.compile("\\A(?=[^a-z]*[a-z])(?=(?:[^A-Z]*[A-Z]))(?=\\D*\\d)\\w{6,20}\\z").matcher("a2AAA").matches();
         boolean over20Password = Pattern.compile("\\A(?=[^a-z]*[a-z])(?=(?:[^A-Z]*[A-Z]))(?=\\D*\\d)\\w{6,20}\\z").matcher("aidhfioasdfpioaAAA2fiajspdfasdfad").matches();

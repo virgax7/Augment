@@ -22,11 +22,11 @@
                             <p:dialog header="Create Goal" widgetVar="goalModal" modal="true">
                                 <h:form id="createGoalForm">
                                     <h:panelGrid columns="2" border = "1" cellpadding = "10" cellspacing = "1">
-                                        <p:outputLabel styleClass="formLabel" for="title" value="StartDate: "/>
-                                        <p:calendar pattern="dd/MM/yyyy" value="#{goals.startDate}"/>
-                                        <p:outputLabel styleClass="formLabel" for="title" value="TargetDate: "/>
-                                        <p:calendar pattern="dd/MM/yyyy" value="#{goals.targetDate}"/>
-                                        <p:outputLabel styleClass="formLabel" for="title" value="Title: "/>
+                                        <p:outputLabel styleClass="formLabel" for="title" value="StartDate:* "/>
+                                        <p:calendar pattern="dd/MM/yyyy" value="#{goals.startDate}" required="true"/>
+                                        <p:outputLabel styleClass="formLabel" for="title" value="TargetDate:* "/>
+                                        <p:calendar pattern="dd/MM/yyyy" value="#{goals.targetDate}" required="true"/>
+                                        <p:outputLabel styleClass="formLabel" for="title" value="Title:* "/>
                                         <p:inputText id="title" value="#{goals.title}" required="true"/>
                                         <p:outputLabel styleClass="formLabel" for="description" value="Description: "/>
                                         <p:inputTextarea id="description" value="#{goals.description}" rows="5" cols="50"

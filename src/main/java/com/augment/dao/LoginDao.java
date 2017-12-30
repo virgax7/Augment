@@ -13,6 +13,6 @@ public class LoginDao {
     private JdbcTemplate jdbcTemplate;
 
     public List<Map<String, Object>> getUser(final String username, final String password) {
-        return jdbcTemplate.queryForList("select * from users where username=? and password=?", new Object[]{username, password});
+        return jdbcTemplate.queryForList("select * from users where username=? and password=?", username, password);
     }
 }

@@ -50,7 +50,7 @@ public class Goals implements Serializable {
             return new ArrayList<>();
         }
         final List<Map<String, Object>> retrievedGoals = goalsDao.getGoal((String) session.getAttribute("username"), goalStatus);
-        return retrievedGoals.stream().map(goalMap -> makeGoal(goalMap)).collect(Collectors.toList());
+        return retrievedGoals.stream().map(this::makeGoal).collect(Collectors.toList());
     }
 
     private Goal makeGoal(final Map<String, Object> goal) {

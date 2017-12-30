@@ -20,9 +20,9 @@ public class GoalsDao {
 
     public void createGoal(final String username, final String title, final String description, final Date startDate, final Date targetDate) {
         jdbcTemplate.update("INSERT INTO goal (username, title, description, start_date, target_date) VALUES " +
-                "(?,?,?,?,?)", new Object[]{username, title, description,
+                "(?,?,?,?,?)", username, title, description,
                 startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-                targetDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()});
+                targetDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
     }
 
     public List<Map<String, Object>> getGoal(final String username, final Goal.STATUS goalStatus) {
@@ -30,7 +30,7 @@ public class GoalsDao {
     }
 
     public List<Map<String, Object>> getGoal(final String username, final String title) {
-        return jdbcTemplate.queryForList("SELECT * FROM goal WHERE username=? AND title=?", new Object[]{username, title});
+        return jdbcTemplate.queryForList("SELECT * FROM goal WHERE username=? AND title=?", username, title);
     }
 
     private RowMapper getRowMapper() {

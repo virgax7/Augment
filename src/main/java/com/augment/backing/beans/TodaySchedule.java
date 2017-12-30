@@ -13,7 +13,7 @@ import java.util.*;
 @ManagedBean
 public class TodaySchedule implements Serializable {
     @ManagedProperty("#{todayScheduleDao}")
-    TodayScheduleDao todayScheduleDao;
+    private TodayScheduleDao todayScheduleDao;
 
     private static final long serialVersionUID = 8147350519431847430L;
     private String fourFiveAM;
