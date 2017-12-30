@@ -26,6 +26,7 @@ body, html {
     background-color: #026871;
     padding: 7px;
     border: 2px solid black;
+    position: relative;
 }
 
 .dueDate {
@@ -34,13 +35,13 @@ body, html {
     text-align: left;
 }
 
-.taskWrapper {
+.goalWrapper {
     border: 1px solid #026871;
     padding: 15px;
     position: relative;
 }
 
-.task {
+.goal {
     text-align: left;
 }
 
@@ -64,4 +65,39 @@ body, html {
     border: 1px white;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+#createButton {
+    color: white;
+    background-color: #3782E2;
+    padding: 4px 25px 4px;
+    border-radius: 4px;
+    font-family: 'Montserrat';
+    text-decoration: none;
+    font-size: 15px;
+    position: absolute;
+    left: 5px;
+}
 
+#createButton:hover {
+    background-color: #2A6DC2;
+}
+
+.formLabel {
+    text-align: left;
+}
+
+#createGoalForm {
+    font-size: 15px;
+}
+
+#createGoalForm input {
+    margin-top: 15px;
+}
+
+#createGoalForm textarea {
+    margin-top: 15px;
+}
+
+#createGoalForm .ui-outputlabel-rfi {
+    visibility: hidden;
+}

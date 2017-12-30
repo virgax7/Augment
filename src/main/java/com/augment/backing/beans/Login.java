@@ -4,13 +4,11 @@ import com.augment.dao.LoginDao;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 
 @ManagedBean
-@SessionScoped
 public class Login implements Serializable {
     @ManagedProperty("#{loginDao}")
     private LoginDao loginDao;

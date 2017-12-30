@@ -14,7 +14,7 @@ import java.util.Map;
 @Component
 public class TodayScheduleDao {
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     public void updateDay(final TodaySchedule todaySchedule, final String username) {
         jdbcTemplate.update("UPDATE day SET four_five_am = ?, five_six_am = ?, six_seven_am = ?, seven_eight_am = ?, eight_nine_am = ?, nine_ten_am = ?" +

@@ -1,4 +1,4 @@
-var cells = document.getElementsByClassName("taskWrapper");
+var cells = document.getElementsByClassName("goalWrapper");
 for (var i = 0; i < cells.length; i++) {
     cells[i].setAttribute("draggable", true);
     cells[i].addEventListener("dragstart", dragStart);

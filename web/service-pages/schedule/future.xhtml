@@ -16,27 +16,49 @@
             <div id="wrapper">
                 <div id="mainTable">
                     <div class="dropZoneCell">
-                        <div class="dropZoneHeader">Goals</div>
-                        <div id="task1" class="taskWrapper">
+                        <div class="dropZoneHeader">
+                            <button id="createButton" onclick="PF('goalModal').show();">Create</button>
+                            Goals
+                            <p:dialog header="Create Goal" widgetVar="goalModal" modal="true">
+                                <h:form id="createGoalForm">
+                                    <h:panelGrid columns="2" border = "1" cellpadding = "10" cellspacing = "1">
+                                        <p:outputLabel styleClass="formLabel" for="title" value="StartDate: "/>
+                                        <p:calendar pattern="dd/MM/yyyy" value="#{goals.startDate}"/>
+                                        <p:outputLabel styleClass="formLabel" for="title" value="TargetDate: "/>
+                                        <p:calendar pattern="dd/MM/yyyy" value="#{goals.targetDate}"/>
+                                        <p:outputLabel styleClass="formLabel" for="title" value="Title: "/>
+                                        <p:inputText id="title" value="#{goals.title}" required="true"/>
+                                        <p:outputLabel styleClass="formLabel" for="description" value="Description: "/>
+                                        <p:inputTextarea id="description" value="#{goals.description}" rows="5" cols="50"
+                                                         counter="display" maxlength="1000"
+                                                         counterTemplate="{0} characters remaining." autoResize="false"/>
+                                        <h:panelGroup layout="block"/>
+                                        <h:outputText id="display"/>
+                                    </h:panelGrid>
+                                    <h:commandButton action="#{goals.createGoal}" value="Submit"/>
+                                </h:form>
+                            </p:dialog>
+                        </div>
+                        <div id="goal1" class="goalWrapper">
                             <button class="editButton"></button>
                             <div class="dueDate">Due date: 02/01/2017</div>
-                            <div class="task">Learn javascript pretty well</div>
+                            <div class="goal">Learn javascript pretty well</div>
                         </div>
                     </div>
                     <div class="dropZoneCell">
                         <div class="dropZoneHeader">In Progress</div>
-                        <div id="task2" class="taskWrapper">
+                        <div id="goal2" class="goalWrapper">
                             <button class="editButton"></button>
                             <div class="dueDate">Due date: 01/03/2017</div>
-                            <div class="task">Finish out this page at least functionality wise...</div>
+                            <div class="goal">Finish out this page at least functionality wise...</div>
                         </div>
                     </div>
                     <div class="dropZoneCell">
                         <div class="dropZoneHeader">Accomplished</div>
-                        <div id="task3" class="taskWrapper">
+                        <div id="goal3" class="goalWrapper">
                             <button class="editButton"></button>
                             <div class="dueDate">Due date: 12/28/2017</div>
-                            <div class="task">Eat some delicious ice cream...</div>
+                            <div class="goal">Eat some delicious ice cream...</div>
                         </div>
                     </div>
                 </div>

@@ -37,4 +37,17 @@ CREATE TABLE day(
     ON DELETE CASCADE
 );
 
-
+CREATE TABLE goal(
+  title VARCHAR(255) NOT NULL DEFAULT '',
+  description VARCHAR(1000) NOT NULL DEFAULT '',
+  start_date DATE,
+  target_date DATE,
+  status VARCHAR(11),
+  visible BOOLEAN,
+  username VARCHAR(20),
+  PRIMARY KEY (username, title),
+  CONSTRAINT username
+  FOREIGN KEY (username)
+  REFERENCES users (username)
+  ON DELETE CASCADE
+);

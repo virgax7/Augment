@@ -10,7 +10,7 @@ import java.util.Map;
 @Component
 public class RegisterDao {
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     public void createUser(final String username, final String password) {
         jdbcTemplate.update("insert into users values (?,?)", new Object[] {username, password});

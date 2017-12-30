@@ -10,7 +10,7 @@ import java.util.Map;
 @Component
 public class LoginDao {
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     public List<Map<String, Object>> getUser(final String username, final String password) {
         return jdbcTemplate.queryForList("select * from users where username=? and password=?", new Object[]{username, password});
