@@ -24,12 +24,12 @@ public class Goals implements Serializable {
     private Date startDate;
     private Date targetDate;
 
-    public void createGoal() {
+    public String createGoal() {
         final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        if (session == null) {
-            login.logOut();
+        if (goalsDao.getGoal((String) session.getAttribute("username"), title).size() == 0) {
+            goalsDao.createGoal((String) session.getAttribute("username"), title, description, startDate, targetDate);
         }
-        goalsDao.createGoal((String) session.getAttribute("username"), title, description, startDate, targetDate);
+        return "/service-pages/schedule/future.xhtml?faces-redirect=true";
     }
 
     public List<Goal> getGoalsNotInProgress() {
@@ -46,9 +46,6 @@ public class Goals implements Serializable {
 
     private List<Goal> getGoal(final Goal.STATUS goalStatus){
         final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        if (session == null) {
-            return new ArrayList<>();
-        }
         final List<Map<String, Object>> retrievedGoals = goalsDao.getGoal((String) session.getAttribute("username"), goalStatus);
         return retrievedGoals.stream().map(this::makeGoal).collect(Collectors.toList());
     }

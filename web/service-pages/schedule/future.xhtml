@@ -6,7 +6,7 @@
     <ui:define name="header">
         <h:head>
             <title>#{username}</title>
-            <script type="text/javascript" src="/resources/js/schedule/future.js" defer="defer"></script>
+            <script type="text/javascript" src="/resources/js/schedule/future.js?newversion" defer="defer"></script>
         </h:head>
         <ui:include src="/WEB-INF/includes/menu/user-page-menu.xhtml"/>
     </ui:define>
@@ -39,37 +39,32 @@
                                 </h:form>
                             </p:dialog>
                         </div>
-                        <div id="goal1" class="goalWrapper">
-                            <button class="editButton"></button>
-                            <div class="targetDate">Due date: 02/01/2017</div>
-                            <div class="goal">Learn javascript pretty well</div>
-                        </div>
                         <ui:repeat value="#{goals.goalsNotInProgress}" var="goalNotInProgress">
-                            <div class="goalWrapper">
+                            <h:panelGroup layout="block" id="dynamic1" styleClass="goalWrapper" onmousedown="setupDrag(this)">
                                 <button class="editButton"></button>
                                 <div class="targetDate">Due date: #{goalNotInProgress.targetDate}</div>
                                 <div class="goal">#{goalNotInProgress.title}</div>
-                            </div>
+                            </h:panelGroup>
                         </ui:repeat>
                     </div>
                     <div class="dropZoneCell">
                         <div class="dropZoneHeader">In Progress</div>
                         <ui:repeat value="#{goals.goalsInProgress}" var="goalInProgress">
-                            <div class="goalWrapper">
+                            <h:panelGroup layout="block" id="dynamic2" styleClass="goalWrapper" onmousedown="setupDrag(this)">
                                 <button class="editButton"></button>
                                 <div class="targetDate">Due date: #{goalInProgress.targetDate}</div>
                                 <div class="goal">#{goalInProgress.title}</div>
-                            </div>
+                            </h:panelGroup>
                         </ui:repeat>
                     </div>
                     <div class="dropZoneCell">
                         <div class="dropZoneHeader">Accomplished</div>
                         <ui:repeat value="#{goals.goalsAccomplished}" var="goalAccomplished">
-                            <div class="goalWrapper">
+                            <h:panelGroup layout="block" id="dynamic3" styleClass="goalWrapper" onmousedown="setupDrag(this)">
                                 <button class="editButton"></button>
                                 <div class="targetDate">Due date: #{goalAccomplished.targetDate}</div>
                                 <div class="goal">#{goalAccomplished.title}</div>
-                            </div>
+                            </h:panelGroup>
                         </ui:repeat>
                     </div>
                 </div>

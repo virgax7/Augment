@@ -43,18 +43,12 @@ public class TodaySchedule implements Serializable {
 
     public String saveSchedule() {
         final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        if (session == null) {
-            return "/account-pages/login.xhtml?faces-redirect=true";
-        }
         todayScheduleDao.updateDay(this, (String) session.getAttribute("username"));
         return "/service-pages/schedule/today.xhtml";
     }
 
     public List<Hour> getHours() {
         final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        if (session == null) {
-            return new ArrayList<>();
-        }
         final String username = (String) session.getAttribute("username");
         final Set<Map.Entry<String, Object>> day = todayScheduleDao.getDay(username).get(0).entrySet();
         final List<Hour> hours = new ArrayList<>();

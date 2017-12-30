@@ -1,9 +1,3 @@
-var cells = document.getElementsByClassName("goalWrapper");
-for (var i = 0; i < cells.length; i++) {
-    cells[i].setAttribute("draggable", true);
-    cells[i].addEventListener("dragstart", dragStart);
-}
-
 var dropZones = document.getElementsByClassName("dropZoneCell");
 for (var i = 0; i < dropZones.length; i++) {
     dropZones[i].addEventListener("drop", dragDrop);
@@ -17,7 +11,11 @@ for (var i = 0; i < dropZones.length; i++) {
     editButtons[i].addEventListener("click", showEditCell);
 }
 
-// find out a way to make this replace content with the task element you click
+function setupDrag(goalWrapper) {
+    goalWrapper.setAttribute("draggable", true);
+    goalWrapper.addEventListener("dragstart", dragStart);
+}
+
 function showEditCell() {
     var editCell =
         '<div id="editCell">' +
