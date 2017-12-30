@@ -9,8 +9,6 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @ManagedBean
 public class TodaySchedule implements Serializable {
@@ -59,13 +57,12 @@ public class TodaySchedule implements Serializable {
         }
         final String username = (String) session.getAttribute("username");
         final Set<Map.Entry<String, Object>> day = todayScheduleDao.getDay(username).get(0).entrySet();
-        final List<Hour> hours = IntStream.range(0, Hour.TIME.values().length).mapToObj($ -> new Hour()).collect(Collectors.toList());
+        final List<Hour> hours = new ArrayList<>();
 
         int i = 0;
         final Iterator<Map.Entry<String, Object>> dayIterator = day.iterator();
         while (i < Hour.TIME.values().length && dayIterator.hasNext()) {
-            hours.get(i).setTime(Hour.TIME.values()[i].toString());
-            hours.get(i++).setTask((String) dayIterator.next().getValue());
+            hours.add(new Hour(Hour.TIME.values()[i++].toString(), (String) dayIterator.next().getValue()));
         }
         return hours;
     }

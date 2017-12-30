@@ -1,23 +1,20 @@
 package com.augment.vo.schedule;
 
 public class Hour {
-    private String time;
-    private String task;
+    private final String time;
+    private final String task;
+
+    public Hour(final String time, final String task) {
+        this.time = time;
+        this.task = task;
+    }
 
     public String getTime() {
         return time;
     }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
-
     public String getTask() {
         return task;
-    }
-
-    public void setTask(String task) {
-        this.task = task;
     }
 
     public enum TIME {

@@ -41,25 +41,36 @@
                         </div>
                         <div id="goal1" class="goalWrapper">
                             <button class="editButton"></button>
-                            <div class="dueDate">Due date: 02/01/2017</div>
+                            <div class="targetDate">Due date: 02/01/2017</div>
                             <div class="goal">Learn javascript pretty well</div>
                         </div>
+                        <ui:repeat value="#{goals.goalsNotInProgress}" var="goalNotInProgress">
+                            <div class="goalWrapper">
+                                <button class="editButton"></button>
+                                <div class="targetDate">Due date: #{goalNotInProgress.targetDate}</div>
+                                <div class="goal">#{goalNotInProgress.title}</div>
+                            </div>
+                        </ui:repeat>
                     </div>
                     <div class="dropZoneCell">
                         <div class="dropZoneHeader">In Progress</div>
-                        <div id="goal2" class="goalWrapper">
-                            <button class="editButton"></button>
-                            <div class="dueDate">Due date: 01/03/2017</div>
-                            <div class="goal">Finish out this page at least functionality wise...</div>
-                        </div>
+                        <ui:repeat value="#{goals.goalsInProgress}" var="goalInProgress">
+                            <div class="goalWrapper">
+                                <button class="editButton"></button>
+                                <div class="targetDate">Due date: #{goalInProgress.targetDate}</div>
+                                <div class="goal">#{goalInProgress.title}</div>
+                            </div>
+                        </ui:repeat>
                     </div>
                     <div class="dropZoneCell">
                         <div class="dropZoneHeader">Accomplished</div>
-                        <div id="goal3" class="goalWrapper">
-                            <button class="editButton"></button>
-                            <div class="dueDate">Due date: 12/28/2017</div>
-                            <div class="goal">Eat some delicious ice cream...</div>
-                        </div>
+                        <ui:repeat value="#{goals.goalsAccomplished}" var="goalAccomplished">
+                            <div class="goalWrapper">
+                                <button class="editButton"></button>
+                                <div class="targetDate">Due date: #{goalAccomplished.targetDate}</div>
+                                <div class="goal">#{goalAccomplished.title}</div>
+                            </div>
+                        </ui:repeat>
                     </div>
                 </div>
             </div>

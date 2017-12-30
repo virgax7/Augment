@@ -42,8 +42,8 @@ CREATE TABLE goal(
   description VARCHAR(1000) NOT NULL DEFAULT '',
   start_date DATE,
   target_date DATE,
-  status VARCHAR(11),
-  visible BOOLEAN,
+  status VARCHAR(16) NOT NULL DEFAULT 'not_in_progress',
+  archived BOOLEAN NOT NULL DEFAULT FALSE,
   username VARCHAR(20),
   PRIMARY KEY (username, title),
   CONSTRAINT username
