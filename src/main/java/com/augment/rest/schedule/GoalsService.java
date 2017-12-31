@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import java.util.Date;
 import java.util.Map;
 
 @Component
@@ -24,8 +25,8 @@ public class GoalsService {
 
     @GET
     @Path("/{title}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Goal getGoal(@PathParam("title") final String title, @Context HttpServletRequest request) {
+    @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+    public Goal getGoal(@PathParam("title") final String title, @Context final HttpServletRequest request) {
         final String username = (String) request.getSession().getAttribute("username");
         final Map<String, Object> goalMap = goalsDao.getGoal(username, title).get(0);
         return GoalConverts.makeGoal(goalMap);
@@ -33,8 +34,21 @@ public class GoalsService {
 
     @PUT
     @Path("/{title}")
-    public void updateGoal(@PathParam("title") final String title, @QueryParam("status") final String status, @Context HttpServletRequest request) {
+    public void updateGoal(@PathParam("title") final String title, @QueryParam("status") final String status, @Context final HttpServletRequest request) {
         final String username = (String) request.getSession().getAttribute("username");
         goalsDao.updateGoalStatus(username, title, status);
+    }
+
+    @PUT
+    @Path("/editGoal/{oldTitle}")
+    public void saveGoalEdit(@PathParam("oldTitle") final String oldTitle, @QueryParam("newTitle") final String newTitle, @QueryParam("description") final String description,
+                             @QueryParam("startDate") final Date startDate, @QueryParam("targetDate") final Date targetDate,
+                             @QueryParam("status") final String status, @QueryParam("archived") final boolean archived,
+                             @Context final HttpServletRequest request) {
+        final String username = (String) request.getSession().getAttribute("username");
+        if (!(startDate instanceof Date) || !(targetDate instanceof Date)) {
+            return;
+        }
+        goalsDao.updateGoal(username, oldTitle, newTitle, description, startDate, targetDate, archived);
     }
 }

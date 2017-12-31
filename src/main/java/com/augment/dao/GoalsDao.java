@@ -41,6 +41,13 @@ public class GoalsDao {
         jdbcTemplate.update("UPDATE goal SET status=? WHERE username=? AND title=?", status, username, title);
     }
 
+    public void updateGoal(final String username, final String oldTitle, final String newTitle, final String description,
+                           final Date startDate, final Date targetDate, final boolean archived) {
+        jdbcTemplate.update("UPDATE goal SET title=?, description=?, start_date=?, target_date=?, archived=? WHERE " +
+                        "username=? AND title=?", newTitle, description, startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                targetDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), archived, username, oldTitle);
+    }
+
     private RowMapper getRowMapper() {
         return new ColumnMapRowMapper() {
             protected Map<String, Object> createColumnMap(int columnCount) {
