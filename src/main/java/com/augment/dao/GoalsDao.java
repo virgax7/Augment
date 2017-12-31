@@ -15,22 +15,30 @@ import java.util.Map;
 
 @Component
 public class GoalsDao {
+    private final JdbcTemplate jdbcTemplate;
+
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    public GoalsDao(final JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     public void createGoal(final String username, final String title, final String description, final Date startDate, final Date targetDate) {
         jdbcTemplate.update("INSERT INTO goal (username, title, description, start_date, target_date) VALUES " +
-                "(?,?,?,?,?)", username, title, description,
+                        "(?,?,?,?,?)", username, title, description,
                 startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
                 targetDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
     }
 
     public List<Map<String, Object>> getGoal(final String username, final Goal.STATUS goalStatus) {
-        return jdbcTemplate.query("select * from goal where username='" + username + "' and status='" + goalStatus.toString() + "' and archived=" + false, getRowMapper());
+        return jdbcTemplate.query("SELECT * FROM goal WHERE Username='" + username + "' AND status='" + goalStatus.toString() + "' AND archived=" + false, getRowMapper());
     }
 
     public List<Map<String, Object>> getGoal(final String username, final String title) {
         return jdbcTemplate.queryForList("SELECT * FROM goal WHERE username=? AND title=?", username, title);
+    }
+
+    public void updateGoalStatus(final String username, final String title, final String status) {
+        jdbcTemplate.update("UPDATE goal SET status=? WHERE username=? AND title=?", status, username, title);
     }
 
     private RowMapper getRowMapper() {

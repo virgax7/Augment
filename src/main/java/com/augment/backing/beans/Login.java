@@ -1,6 +1,8 @@
 package com.augment.backing.beans;
 
 import com.augment.dao.LoginDao;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -9,6 +11,8 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 
+@Getter
+@Setter
 @ManagedBean
 @ViewScoped
 public class Login implements Serializable {
@@ -18,26 +22,6 @@ public class Login implements Serializable {
     private static final long serialVersionUID = 7082351863960448880L;
     private String username;
     private String password;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(final String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(final String password) {
-        this.password = password;
-    }
-
-    public void setLoginDao(LoginDao loginDao) {
-        this.loginDao = loginDao;
-    }
 
     public String validateLogin() {
         final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);

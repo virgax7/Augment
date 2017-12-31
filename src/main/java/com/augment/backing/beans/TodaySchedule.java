@@ -2,6 +2,8 @@ package com.augment.backing.beans;
 
 import com.augment.dao.TodayScheduleDao;
 import com.augment.vo.schedule.Hour;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -10,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.util.*;
 
+@Getter
+@Setter
 @ManagedBean
 public class TodaySchedule implements Serializable {
     @ManagedProperty("#{todayScheduleDao}")
@@ -59,201 +63,5 @@ public class TodaySchedule implements Serializable {
             hours.add(new Hour(Hour.TIME.values()[i++].toString(), (String) dayIterator.next().getValue()));
         }
         return hours;
-    }
-
-    public void setTodayScheduleDao(TodayScheduleDao todayScheduleDao) {
-        this.todayScheduleDao = todayScheduleDao;
-    }
-
-    public String getFourFiveAM() {
-        return fourFiveAM;
-    }
-
-    public void setFourFiveAM(String fourFiveAM) {
-        this.fourFiveAM = fourFiveAM;
-    }
-
-    public String getFiveSixAM() {
-        return fiveSixAM;
-    }
-
-    public void setFiveSixAM(String fiveSixAM) {
-        this.fiveSixAM = fiveSixAM;
-    }
-
-    public String getSixSevenAM() {
-        return sixSevenAM;
-    }
-
-    public void setSixSevenAM(String sixSevenAM) {
-        this.sixSevenAM = sixSevenAM;
-    }
-
-    public String getSevenEightAM() {
-        return sevenEightAM;
-    }
-
-    public void setSevenEightAM(String sevenEightAM) {
-        this.sevenEightAM = sevenEightAM;
-    }
-
-    public String getEightNineAM() {
-        return eightNineAM;
-    }
-
-    public void setEightNineAM(String eightNineAM) {
-        this.eightNineAM = eightNineAM;
-    }
-
-    public String getNineTenAM() {
-        return nineTenAM;
-    }
-
-    public void setNineTenAM(String nineTenAM) {
-        this.nineTenAM = nineTenAM;
-    }
-
-    public String getTenElevenAM() {
-        return tenElevenAM;
-    }
-
-    public void setTenElevenAM(String tenElevenAM) {
-        this.tenElevenAM = tenElevenAM;
-    }
-
-    public String getElevenTwelvePM() {
-        return elevenTwelvePM;
-    }
-
-    public void setElevenTwelvePM(String elevenTwelvePM) {
-        this.elevenTwelvePM = elevenTwelvePM;
-    }
-
-    public String getTwelveOnePM() {
-        return twelveOnePM;
-    }
-
-    public void setTwelveOnePM(String twelveOnePM) {
-        this.twelveOnePM = twelveOnePM;
-    }
-
-    public String getOneTwoPM() {
-        return oneTwoPM;
-    }
-
-    public void setOneTwoPM(String oneTwoPM) {
-        this.oneTwoPM = oneTwoPM;
-    }
-
-    public String getTwoThreePM() {
-        return twoThreePM;
-    }
-
-    public void setTwoThreePM(String twoThreePM) {
-        this.twoThreePM = twoThreePM;
-    }
-
-    public String getThreeFourPM() {
-        return threeFourPM;
-    }
-
-    public void setThreeFourPM(String threeFourPM) {
-        this.threeFourPM = threeFourPM;
-    }
-
-    public String getFourFivePM() {
-        return fourFivePM;
-    }
-
-    public void setFourFivePM(String fourFivePM) {
-        this.fourFivePM = fourFivePM;
-    }
-
-    public String getFiveSixPM() {
-        return fiveSixPM;
-    }
-
-    public void setFiveSixPM(String fiveSixPM) {
-        this.fiveSixPM = fiveSixPM;
-    }
-
-    public String getSixSevenPM() {
-        return sixSevenPM;
-    }
-
-    public void setSixSevenPM(String sixSevenPM) {
-        this.sixSevenPM = sixSevenPM;
-    }
-
-    public String getSevenEightPM() {
-        return sevenEightPM;
-    }
-
-    public void setSevenEightPM(String sevenEightPM) {
-        this.sevenEightPM = sevenEightPM;
-    }
-
-    public String getEightNinePM() {
-        return eightNinePM;
-    }
-
-    public void setEightNinePM(String eightNinePM) {
-        this.eightNinePM = eightNinePM;
-    }
-
-    public String getNineTenPM() {
-        return nineTenPM;
-    }
-
-    public void setNineTenPM(String nineTenPM) {
-        this.nineTenPM = nineTenPM;
-    }
-
-    public String getTenElevenPM() {
-        return tenElevenPM;
-    }
-
-    public void setTenElevenPM(String tenElevenPM) {
-        this.tenElevenPM = tenElevenPM;
-    }
-
-    public String getElevenTwelveAM() {
-        return elevenTwelveAM;
-    }
-
-    public void setElevenTwelveAM(String elevenTwelveAM) {
-        this.elevenTwelveAM = elevenTwelveAM;
-    }
-
-    public String getTwelveOneAM() {
-        return twelveOneAM;
-    }
-
-    public void setTwelveOneAM(String twelveOneAM) {
-        this.twelveOneAM = twelveOneAM;
-    }
-
-    public String getOneTwoAM() {
-        return oneTwoAM;
-    }
-
-    public void setOneTwoAM(String oneTwoAM) {
-        this.oneTwoAM = oneTwoAM;
-    }
-
-    public String getTwoThreeAM() {
-        return twoThreeAM;
-    }
-
-    public void setTwoThreeAM(String twoThreeAM) {
-        this.twoThreeAM = twoThreeAM;
-    }
-
-    public String getThreeFourAM() {
-        return threeFourAM;
-    }
-
-    public void setThreeFourAM(String threeFourAM) {
-        this.threeFourAM = threeFourAM;
     }
 }

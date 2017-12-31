@@ -38,5 +38,9 @@ function dragStart(event) {
 function dragDrop(event) {
     event.preventDefault();
     event.target.appendChild(document.getElementById(event.dataTransfer.getData("id")));
+    // send HTTP PUT request
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("PUT", "/rest/future/asdfasdf?status=accomplished");
+    xmlHttp.send();
 }
 

@@ -2,6 +2,8 @@ package com.augment.backing.beans;
 
 import com.augment.dao.RegisterDao;
 import com.augment.dao.TodayScheduleDao;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -10,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.util.regex.Pattern;
 
+@Getter
+@Setter
 @ManagedBean
 public class Register implements Serializable {
     @ManagedProperty("#{registerDao}")
@@ -21,38 +25,6 @@ public class Register implements Serializable {
     private String username;
     private String password;
     private String passwordConfirm;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
-
-    public void setRegisterDao(RegisterDao registerDao) {
-        this.registerDao = registerDao;
-    }
-
-    public void setTodayScheduleDao(TodayScheduleDao todayScheduleDao) {
-        this.todayScheduleDao = todayScheduleDao;
-    }
 
     public String signUp() {
         final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);

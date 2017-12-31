@@ -2,6 +2,8 @@ package com.augment.backing.beans;
 
 import com.augment.dao.GoalsDao;
 import com.augment.vo.schedule.Goal;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -11,12 +13,12 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Getter
+@Setter
 @ManagedBean
 public class Goals implements Serializable {
     @ManagedProperty("#{goalsDao}")
     private GoalsDao goalsDao;
-    @ManagedProperty("#{login}")
-    private Login login;
 
     private static final long serialVersionUID = 7952282536271621552L;
     private String title;
@@ -59,43 +61,4 @@ public class Goals implements Serializable {
         return dateString.replaceAll("(\\d+)-(\\d+)-(\\d+)", "$2/$3/$1");
     }
 
-    public void setGoalsDao(final GoalsDao goalsDao) {
-        this.goalsDao = goalsDao;
-    }
-
-    public void setLogin(final Login login) {
-        this.login = login;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getTargetDate() {
-        return targetDate;
-    }
-
-    public void setTargetDate(Date targetDate) {
-        this.targetDate = targetDate;
-    }
 }

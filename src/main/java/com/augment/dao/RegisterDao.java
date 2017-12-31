@@ -9,8 +9,12 @@ import java.util.Map;
 
 @Component
 public class RegisterDao {
+    private final JdbcTemplate jdbcTemplate;
+
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    public RegisterDao(final JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     public void createUser(final String username, final String password) {
         jdbcTemplate.update("insert into users values (?,?)", username, password);

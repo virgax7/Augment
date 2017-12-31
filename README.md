@@ -6,6 +6,3 @@ I originate from a TDD company and can just say don't write tests like this... T
 
 Also... no javascript frameworks are used.. and possibly older less elegant syntax.. However, it's all for learning.
 
-
-
-Oh and I wish Java 9 and Project Lombok would work together, but as of now no :/
