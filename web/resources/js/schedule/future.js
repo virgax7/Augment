@@ -41,10 +41,12 @@ function showEditCell(event) {
             '<button id="closeEditCellButton"></button>' +
             '<form onsubmit="saveEdit()" id="editGoalForm">' +
                 'Title: <input type="text" id="editTitle" value="' + goalMap.get("title") + '" required><br>' +
-                'Description: <input type="text" id="editDescription" value="' + goalMap.get("description") + '"><br>' +
+                'Description: <textarea id="editDescription" rows="15" cols="40">' + goalMap.get("description") + '</textarea><br>' +
                 'Start Date: <input type="date" id="editStartDate" required><br>' +
                 'Target Date: <input type="date" id="editTargetDate" required><br>' +
-                'Status: <input type="text" id="editStatus" value="' + goalMap.get("status") + '"><br>' +
+                'Status: <br><input type="radio" name="status" id="editStatus1" value=true>Not In Progress' +
+                        '<input type="radio" name="status" id="editStatus2" value=true>In Progress' +
+                        '<input type="radio" name="status" id="editStatus3" value=false>Accomplished<br>' +
                 'Archived: <input type="radio" name="yesOrNo" id="editArchived" value=true>Yes' +
                            '<input type="radio" name="yesOrNo" value=false checked="checked">No<br>' +
                 '<button id="saveButton" onclick="saveEdit()">Save</button>' +
@@ -61,7 +63,8 @@ function saveEdit(){
     var description = document.getElementById("editDescription").value;
     var startDate = document.getElementById("editStartDate").value.replace(/(\d{4})-(\d{2})-(\d{2})/g, `$2/$3/$1`);
     var targetDate = document.getElementById("editTargetDate").value.replace(/(\d{4})-(\d{2})-(\d{2})/g, `$2/$3/$1`);
-    var status = document.getElementById("editStatus").value;
+    var status = document.getElementById("editStatus1").checked ? "not_in_progress"
+        : document.getElementById("editStatus2").checked ? "in_progress" : "accomplished";
     var archived = document.getElementById("editArchived").checked ? true : false;
     var xmlHttp = new XMLHttpRequest();
     var putUri = "/rest/future/editGoal/" + currentEditCell + "?newTitle=" + title + "&description=" + description +

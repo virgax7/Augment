@@ -42,10 +42,10 @@ public class GoalsDao {
     }
 
     public void updateGoal(final String username, final String oldTitle, final String newTitle, final String description,
-                           final Date startDate, final Date targetDate, final boolean archived) {
-        jdbcTemplate.update("UPDATE goal SET title=?, description=?, start_date=?, target_date=?, archived=? WHERE " +
+                           final Date startDate, final Date targetDate, final String status, final boolean archived) {
+        jdbcTemplate.update("UPDATE goal SET title=?, description=?, start_date=?, target_date=?, status=?, archived=? WHERE " +
                         "username=? AND title=?", newTitle, description, startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-                targetDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), archived, username, oldTitle);
+                targetDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), status, archived, username, oldTitle);
     }
 
     private RowMapper getRowMapper() {

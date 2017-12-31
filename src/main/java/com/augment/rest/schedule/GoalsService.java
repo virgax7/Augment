@@ -49,6 +49,6 @@ public class GoalsService {
         if (!(startDate instanceof Date) || !(targetDate instanceof Date)) {
             return;
         }
-        goalsDao.updateGoal(username, oldTitle, newTitle, description, startDate, targetDate, archived);
+        goalsDao.updateGoal(username, oldTitle, newTitle, description, startDate, targetDate, status, archived);
     }
 }
