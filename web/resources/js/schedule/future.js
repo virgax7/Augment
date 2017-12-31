@@ -21,6 +21,9 @@ function showEditCell(event) {
     if (currentEditCell != null && currentEditCell === event.target.parentNode.lastChild.innerHTML) {
         return;
     }
+    if (currentEditCell != null && currentEditCell !== event.target.parentNode.lastChild.innerHTML) {
+        closeEditCell();
+    }
     currentEditCell = event.target.parentNode.lastChild.innerHTML;
     var xmlHttp = new XMLHttpRequest();
     var goalMap = new Map();
@@ -62,7 +65,7 @@ function saveEdit(){
     var archived = document.getElementById("editArchived").checked ? true : false;
     var xmlHttp = new XMLHttpRequest();
     var putUri = "/rest/future/editGoal/" + currentEditCell + "?newTitle=" + title + "&description=" + description +
-    "&startDate=" + startDate + "&targetDate=" + targetDate + "&status=" + status + "&archived=" + archived
+    "&startDate=" + startDate + "&targetDate=" + targetDate + "&status=" + status + "&archived=" + archived;
     xmlHttp.open("PUT", putUri);
     xmlHttp.send();
 }
