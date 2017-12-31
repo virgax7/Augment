@@ -16,7 +16,19 @@ function setupDrag(goalWrapper) {
     goalWrapper.addEventListener("dragstart", dragStart);
 }
 
-function showEditCell() {
+var currentEditCell;
+function showEditCell(event) {
+    if (currentEditCell != null && currentEditCell === event.target.parentNode.lastChild.innerHTML) {
+        return;
+    }
+    currentEditCell = event.target.parentNode.lastChild.innerHTML;
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        console.log(this.responseText);
+        console.log(this.response);
+    };
+    xmlHttp.open("GET", "/rest/future/" + currentEditCell);
+    xmlHttp.send();
     var editCell =
         '<div id="editCell">' +
             '<button id="closeEditCellButton"></button>' +

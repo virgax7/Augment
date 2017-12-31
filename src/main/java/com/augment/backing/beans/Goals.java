@@ -1,5 +1,6 @@
 package com.augment.backing.beans;
 
+import com.augment.convert.schedule.GoalConverts;
 import com.augment.dao.GoalsDao;
 import com.augment.vo.schedule.Goal;
 import lombok.Getter;
@@ -49,16 +50,6 @@ public class Goals implements Serializable {
     private List<Goal> getGoal(final Goal.STATUS goalStatus){
         final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         final List<Map<String, Object>> retrievedGoals = goalsDao.getGoal((String) session.getAttribute("username"), goalStatus);
-        return retrievedGoals.stream().map(this::makeGoal).collect(Collectors.toList());
+        return retrievedGoals.stream().map(GoalConverts::makeGoal).collect(Collectors.toList());
     }
-
-    private Goal makeGoal(final Map<String, Object> goal) {
-        return new Goal((String) goal.get("title"), (String) goal.get("description"),
-                formatToLocalDate(goal.get("start_date").toString()), formatToLocalDate(goal.get("target_date").toString()));
-    }
-
-    private String formatToLocalDate(final String dateString) {
-        return dateString.replaceAll("(\\d+)-(\\d+)-(\\d+)", "$2/$3/$1");
-    }
-
 }
