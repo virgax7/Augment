@@ -70,6 +70,7 @@ function saveEdit(){
 function closeEditCell() {
     var editCell = document.getElementById("editCell");
     editCell.parentNode.removeChild(editCell);
+    currentEditCell = null;
 }
 
 function dragStart(event) {
