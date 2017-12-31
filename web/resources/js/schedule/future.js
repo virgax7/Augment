@@ -38,9 +38,11 @@ function dragStart(event) {
 function dragDrop(event) {
     event.preventDefault();
     event.target.appendChild(document.getElementById(event.dataTransfer.getData("id")));
-    // send HTTP PUT request
+    var dropZoneCell = event.target.getAttribute("id");
+    var status = dropZoneCell === "dropZoneCell1" ? "not_in_progress" : dropZoneCell === "dropZoneCell2" ? "in_progress" : "accomplished";
+    var title = document.getElementById(event.dataTransfer.getData("id")).lastChild.innerHTML;
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("PUT", "/rest/future/asdfasdf?status=accomplished");
+    xmlHttp.open("PUT", "/rest/future/" + title + "?status=" + status);
     xmlHttp.send();
 }
 

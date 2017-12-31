@@ -15,7 +15,7 @@
             <h:outputStylesheet name="/schedule/future.css" library="css"/>
             <div id="wrapper">
                 <div id="mainTable">
-                    <div class="dropZoneCell">
+                    <div class="dropZoneCell" id="dropZoneCell1">
                         <div class="dropZoneHeader">
                             <button id="createButton" onclick="PF('goalModal').show();">Create</button>
                             Goals
@@ -47,7 +47,7 @@
                             </h:panelGroup>
                         </ui:repeat>
                     </div>
-                    <div class="dropZoneCell">
+                    <div class="dropZoneCell" id="dropZoneCell2">
                         <div class="dropZoneHeader">In Progress</div>
                         <ui:repeat value="#{goals.goalsInProgress}" var="goalInProgress">
                             <h:panelGroup layout="block" id="dynamic2" styleClass="goalWrapper" onmousedown="setupDrag(this)">
@@ -57,7 +57,7 @@
                             </h:panelGroup>
                         </ui:repeat>
                     </div>
-                    <div class="dropZoneCell">
+                    <div class="dropZoneCell" id="dropZoneCell3">
                         <div class="dropZoneHeader">Accomplished</div>
                         <ui:repeat value="#{goals.goalsAccomplished}" var="goalAccomplished">
                             <h:panelGroup layout="block" id="dynamic3" styleClass="goalWrapper" onmousedown="setupDrag(this)">
