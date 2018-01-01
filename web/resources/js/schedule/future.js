@@ -17,6 +17,7 @@ function setupDrag(goalWrapper) {
 }
 
 var currentEditCell;
+var currentStatus;
 function showEditCell(event) {
     if (currentEditCell != null && currentEditCell === event.target.parentNode.lastChild.innerHTML) {
         return;
@@ -25,6 +26,7 @@ function showEditCell(event) {
         closeEditCell();
     }
     currentEditCell = event.target.parentNode.lastChild.innerHTML;
+    currentStatus = event.target.parentNode.parentNode.id;
     var xmlHttp = new XMLHttpRequest();
     var goalMap = new Map();
     xmlHttp.onload = function() {
@@ -40,15 +42,15 @@ function showEditCell(event) {
         '<div id="editCell">' +
             '<button id="closeEditCellButton"></button>' +
             '<form onsubmit="saveEdit()" id="editGoalForm">' +
-                'Title: <input type="text" id="editTitle" value="' + goalMap.get("title") + '" required><br>' +
-                'Description: <textarea id="editDescription" rows="15" cols="40">' + goalMap.get("description") + '</textarea><br>' +
-                'Start Date: <input type="date" id="editStartDate" required><br>' +
-                'Target Date: <input type="date" id="editTargetDate" required><br>' +
+                'Title: <input type="text" id="editTitle" value="' + goalMap.get("title") + '" required><br><br>' +
+                'Description: <textarea id="editDescription" rows="15" cols="40">' + goalMap.get("description") + '</textarea><br><br>' +
+                'Start Date: <input type="date" id="editStartDate" required><br><br>' +
+                'Target Date: <input type="date" id="editTargetDate" required><br><br>' +
                 'Status: <br><input type="radio" name="status" id="editStatus1" value=true>Not In Progress' +
                         '<input type="radio" name="status" id="editStatus2" value=true>In Progress' +
-                        '<input type="radio" name="status" id="editStatus3" value=false>Accomplished<br>' +
-                'Archived: <input type="radio" name="yesOrNo" id="editArchived" value=true>Yes' +
-                           '<input type="radio" name="yesOrNo" value=false checked="checked">No<br>' +
+                        '<input type="radio" name="status" id="editStatus3" value=false>Accomplished<br><br>' +
+                'Archived: <br><input type="radio" name="yesOrNo" id="editArchived" value=true>Yes' +
+                           '<input type="radio" name="yesOrNo" value=false checked="checked">No<br><br>' +
                 '<button id="saveButton" onclick="saveEdit()">Save</button>' +
             '</form>' +
         '</div>';
@@ -67,8 +69,13 @@ function saveEdit(){
         : document.getElementById("editStatus2").checked ? "in_progress" : "accomplished";
     var archived = document.getElementById("editArchived").checked ? true : false;
     var xmlHttp = new XMLHttpRequest();
+    var realStatus = status;
+    if (!document.getElementById("editStatus1").checked && !document.getElementById("editStatus2").checked
+        && !document.getElementById("editStatus3").checked) {
+        realStatus = currentStatus === "dropZoneCell1" ? "not_in_progress" : currentStatus === "dropZoneCell2" ? "in_progress" : "accomplished";
+    }
     var putUri = "/rest/future/editGoal/" + currentEditCell + "?newTitle=" + title + "&description=" + description +
-    "&startDate=" + startDate + "&targetDate=" + targetDate + "&status=" + status + "&archived=" + archived;
+    "&startDate=" + startDate + "&targetDate=" + targetDate + "&status=" + realStatus + "&archived=" + archived;
     xmlHttp.open("PUT", putUri);
     xmlHttp.send();
 }
