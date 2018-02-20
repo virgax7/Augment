@@ -93,8 +93,15 @@ function dragStart(event) {
 
 function dragDrop(event) {
     event.preventDefault();
-    event.target.appendChild(document.getElementById(event.dataTransfer.getData("id")));
-    var dropZoneCell = event.target.getAttribute("id");
+    if (!isValidDropZone(event.target)) {
+        return;
+    }
+    let eventTarget = event.target;
+    if (eventTarget.getAttribute("class") !== "dropZoneCell") {
+        while ((eventTarget = eventTarget.parentElement) && eventTarget.getAttribute("class") != "dropZoneCell");
+    }
+    eventTarget.appendChild(document.getElementById(event.dataTransfer.getData("id")));
+    var dropZoneCell = eventTarget.getAttribute("id");
     var status = dropZoneCell === "dropZoneCell1" ? "not_in_progress" : dropZoneCell === "dropZoneCell2" ? "in_progress" : "accomplished";
     var title = document.getElementById(event.dataTransfer.getData("id")).lastChild.innerHTML;
     var xmlHttp = new XMLHttpRequest();
@@ -102,3 +109,10 @@ function dragDrop(event) {
     xmlHttp.send();
 }
 
+function isValidDropZone(eventTarget) {
+    if (eventTarget.getAttribute("class") === "dropZoneCell") {
+        return true;
+    }
+    while ((eventTarget = eventTarget.parentElement) && eventTarget.getAttribute("class") != "dropZoneCell");
+    return eventTarget !== null;
+}
