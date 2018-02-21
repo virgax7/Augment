@@ -98,7 +98,7 @@ function dragDrop(event) {
     }
     let eventTarget = event.target;
     if (eventTarget.getAttribute("class") !== "dropZoneCell") {
-        while ((eventTarget = eventTarget.parentElement) && eventTarget.getAttribute("class") != "dropZoneCell");
+        while ((eventTarget = eventTarget.parentElement) && eventTarget.getAttribute("class") !== "dropZoneCell");
     }
     eventTarget.appendChild(document.getElementById(event.dataTransfer.getData("id")));
     var dropZoneCell = eventTarget.getAttribute("id");
@@ -113,6 +113,6 @@ function isValidDropZone(eventTarget) {
     if (eventTarget.getAttribute("class") === "dropZoneCell") {
         return true;
     }
-    while ((eventTarget = eventTarget.parentElement) && eventTarget.getAttribute("class") != "dropZoneCell");
+    while ((eventTarget = eventTarget.parentElement) && eventTarget.getAttribute("class") !== "dropZoneCell");
     return eventTarget !== null;
 }
