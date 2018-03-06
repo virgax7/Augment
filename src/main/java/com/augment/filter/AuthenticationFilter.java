@@ -24,8 +24,7 @@ public class AuthenticationFilter implements Filter {
             final HttpSession session = httpServletRequest.getSession(false);
             final String requestURI = httpServletRequest.getRequestURI();
 
-            if (requestURI.contains("/login.xhtml") || requestURI.contains("/register.xhtml") || session != null && session.getAttribute("username") != null
-                    || requestURI.matches("/") || requestURI.contains("/index.xhtml") || requestURI.contains("javax.faces.resource")) {
+            if (passesFilter(session, requestURI)) {
                 chain.doFilter(request, response);
             } else {
                 httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/account-pages/login.xhtml");
@@ -33,6 +32,13 @@ public class AuthenticationFilter implements Filter {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private boolean passesFilter(final HttpSession session, final String requestURI) {
+        return requestURI.contains("/login.xhtml") || requestURI.contains("/register.xhtml") || requestURI.contains("/reset-password.xhtml")
+                || session != null && session.getAttribute("username") != null
+                || requestURI.matches("/") || requestURI.contains("/index.xhtml")
+                || requestURI.contains("javax.faces.resource");
     }
 
     @Override

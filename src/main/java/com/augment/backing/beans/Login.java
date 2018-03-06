@@ -1,6 +1,7 @@
 package com.augment.backing.beans;
 
 import com.augment.dao.LoginDao;
+import com.augment.service.NotificationService;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,10 +19,13 @@ import java.io.Serializable;
 public class Login implements Serializable {
     @ManagedProperty("#{loginDao}")
     private LoginDao loginDao;
+    @ManagedProperty("#{notificationService}")
+    private NotificationService notificationService;
 
     private static final long serialVersionUID = 7082351863960448880L;
     private String username;
     private String password;
+    private String email;
 
     public String validateLogin() {
         final HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
@@ -32,6 +36,15 @@ public class Login implements Serializable {
             session.setAttribute("invalidLoginMsg", "Invalid Credentials. Please try again.");
             return "/account-pages/login";
         }
+    }
+
+    public String forgotPassword() {
+        return "/account-pages/reset-password.xhtml?faces-redirect=true";
+    }
+
+    public String resetPassword() {
+        notificationService.sendNotification(email);
+        return "/account-pages/login?faces-redirect=true";
     }
 
     public String logOut() {

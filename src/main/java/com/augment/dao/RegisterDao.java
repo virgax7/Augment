@@ -16,11 +16,15 @@ public class RegisterDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void createUser(final String username, final String password) {
-        jdbcTemplate.update("insert into users values (?,?)", username, password);
+    public void createUser(final String username, final String password, final String email) {
+        jdbcTemplate.update("insert into users values (?,?,?)", username, password, email);
     }
 
     public List<Map<String, Object>> getUser(final String username) {
         return jdbcTemplate.queryForList("select * from users where username=?", username);
+    }
+
+    public List<Map<String, Object>> getUserFromEmail(final String email) {
+        return jdbcTemplate.queryForList("select * from users where email=?", email);
     }
 }

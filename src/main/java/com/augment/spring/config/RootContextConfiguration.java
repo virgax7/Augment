@@ -7,6 +7,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+
+import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = "com.augment")
@@ -21,6 +25,15 @@ public class RootContextConfiguration {
     private String jdbcUserName;
     @Value("${jdbc.password}")
     private String jdbcPassword;
+
+    @Value("${mail.host}")
+    private String mailHost;
+    @Value("${mail.port}")
+    private String mailPort;
+    @Value("${mail.username}")
+    private String mailUsername;
+    @Value("${mail.password}")
+    private String mailPassword;
 
     @Bean
     public BasicDataSource basicDataSource() {
@@ -37,5 +50,22 @@ public class RootContextConfiguration {
     @Bean
     public JdbcTemplate jdbcTemplate() {
         return new JdbcTemplate(basicDataSource());
+    }
+
+    @Bean
+    public JavaMailSender javaMailSender() {
+        final JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost(mailHost);
+        mailSender.setPort(Integer.parseInt(mailPort));
+        mailSender.setUsername(mailUsername);
+        mailSender.setPassword(mailPassword);
+
+        final Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.debug", "true");
+
+        return mailSender;
     }
 }

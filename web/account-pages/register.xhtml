@@ -50,6 +50,12 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td>email :</td>
+                                <td>
+                                    <h:inputSecret value="#{register.email}"/>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td colspan="2">
                                     <h:commandButton action="#{register.signUp}" value="Submit"/>
                                     <p>#{invalidSignUpMsg}</p>
